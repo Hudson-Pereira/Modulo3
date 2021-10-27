@@ -1,4 +1,3 @@
-//mudar nome para aula1-M2
 const prompt = require("prompt-sync")();
 
 const nome = prompt("Digite seu nome: ");
@@ -84,4 +83,3 @@ console.log(duda.nome); //pra imprimir uma informacao especifica, coloca-se o no
 duda.escolaridade = "Mestre";
 
 console.log(duda);
-
