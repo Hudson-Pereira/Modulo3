@@ -11,7 +11,7 @@ router.get("/lista", (req, res) => {
     res.status(200).json({ message: "Nada encontrado." });
     return;
   }
-  res.status(200).json({ jogos });
+  res.status(200).json(jogos);
 });
 
 router.get("/lista/:id", (req, res) => {
@@ -22,7 +22,7 @@ router.get("/lista/:id", (req, res) => {
     return;
   }
 
-  res.status(200).json({ jogo });
+  res.status(200).json(jogo);
 });
 
 router.get("/listar/:nome", (req, res) => {
@@ -33,7 +33,7 @@ router.get("/listar/:nome", (req, res) => {
     return;
   }
 
-  res.status(200).json({ jogo });
+  res.status(200).json(jogo);
 });
 
 router.get("/list/:nome", (req, res) => {
@@ -43,7 +43,7 @@ router.get("/list/:nome", (req, res) => {
     res.status(204).json({ message: "Não encontrado." });
     return;
   }
-  res.status(200).json({ index });
+  res.status(200).json(index);
 });
 
 router.post("/inserir", (req, res) => {
@@ -92,10 +92,17 @@ router.put("/editar/:id", (req, res) => {
       .json({ message: `Jogo ${jogo.nome} alterado com sucesso.` });
   }
 });
-
+//praa deletar apenas a info, sem apagar a posicao
 router.delete("/lista/:id", (req, res) => {
   const id = req.params.id - 1;
 
   delete jogos[id];
   res.status(200).json({ message: "Jogo deletado com sucesso." });
+});
+//para deletar a posicao inteira.
+router.delete("/deletar/:id", (req, res) => {
+  const id = req.params.id - 1;
+
+  jogos.splice(id, 1);
+  res.json(jogos);
 });
