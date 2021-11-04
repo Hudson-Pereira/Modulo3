@@ -58,14 +58,17 @@ router.put("/update/:id", async (req, res) => {
 });
 //aula 7
 router.delete("/del/:id", async (req, res) => {
-  await Pessoa.deleteOne({ _id: req.params.id })
-    .then(() => {
-      res.status(200).json({ message: "delete ok" });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(400).json({ message: "error" });
-    });
+  if (req.params.id.length == 24) {
+    await Pessoa.deleteOne({ _id: req.params.id })
+      .then(() => {
+        res.status(200).json({ message: "delete ok" });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(400).json({ message: "error" });
+      });
+  }
+  res.status(400).json({ message: "error" });
 });
 
 module.exports = router;
